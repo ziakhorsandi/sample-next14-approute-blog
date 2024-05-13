@@ -1,0 +1,38 @@
+.links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logout {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.mobileLinks,
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .links {
+    display: none;
+  }
+  .mobileLinks {
+    position: absolute;
+    z-index: 1000;
+    top: 100px;
+    right: 0;
+    width: 50%;
+    height: calc(100vh - 100px);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .menuBtn {
+    display: block;
+    cursor: pointer;
+  }
+}
