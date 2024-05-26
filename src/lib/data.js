@@ -1,6 +1,6 @@
 import { connectToDb } from './connectTodb';
 import { ObjectId } from 'mongodb';
-// const { ObjectId } = require('mongodb');
+
 import { unstable_noStore as noStore } from 'next/cache';
 
 export const getPosts = async () => {
