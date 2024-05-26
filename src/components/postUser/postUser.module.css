@@ -1,6 +1,10 @@
 .container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
 }
-.container {
+.txtContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -11,4 +15,7 @@
 }
 .username {
   font-weight: 500;
+}
+.avatar {
+  border-radius: 50%;
 }
