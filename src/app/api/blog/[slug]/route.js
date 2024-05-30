@@ -6,7 +6,6 @@ export const GET = async (request, { params }) => {
   try {
     const db = await connectToDb();
     const post = await db.collection('posts').findOne({ slug: slug });
-    console.log('post : ', post);
     return NextResponse.json(post);
   } catch (error) {
     console.log('error : ', error);

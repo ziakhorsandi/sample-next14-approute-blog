@@ -23,3 +23,7 @@ export async function connectToDb() {
     throw new Error(error);
   }
 }
+
+export async function connectDbClose() {
+  await client.close();
+}

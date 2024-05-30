@@ -2,8 +2,6 @@ import Image from 'next/image';
 import styles from './postCard.module.css';
 import Link from 'next/link';
 const PostCard = ({ post }) => {
-  console.log('post', post);
-  console.log('post.slug', post.slug);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
