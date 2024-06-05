@@ -1,7 +1,20 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from '@auth/core/providers/google';
-import { connectToDb } from './connectTodb';
-import { createUser, getUser, getUserByEmail } from './data';
+import CredentailsProvider from '@auth/core/providers/credentials';
+import { createUser, getUser } from './data';
+import bcrypt from 'bcrypt';
+
+export const loginWithCeredentails = async (credentals) => {
+  const user = await getUser({ username: credentals.username });
+  if (!user) {
+    throw new Error('wrong credentals');
+  }
+  const isPassword = await bcrypt.compare(credentals.password, user.password);
+  if (!isPassword) {
+    throw new Error('wrong credentals');
+  }
+  return user;
+};
 
 export const {
   handlers: { GET, POST },
@@ -21,23 +34,26 @@ export const {
         },
       },
     }),
+    CredentailsProvider({
+      async authorize(credentials) {
+        try {
+          const user = await loginWithCeredentails(credentials);
+          return user;
+        } catch (error) {
+          return null;
+        }
+      },
+    }),
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      // console.log('------------------------------');
-      // console.log('account', account);
-      // console.log('profile', profile);
-      // console.log('------------------------------');
-
       if (account.provider === 'google') {
         try {
-          const user = await getUserByEmail(profile.email);
-          console.log('user', user);
+          const user = await getUser({ email: profile.email });
           if (!user) {
             const newUser = {
               username: profile.name,
               email: profile.email,
-              isAdmin: false,
               img: profile.picture,
             };
             await createUser(newUser);
