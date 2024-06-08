@@ -1,17 +1,18 @@
-import { login, loginWithGoogle } from '@/lib/action';
+import LoginForm from '@/components/loginForm/LoginForm';
+import { loginWithGoogle } from '@/lib/action';
+import styles from './login.module.css';
 
 const LoginPage = async () => {
   return (
     <>
-      <div>LoginPage</div>
-      <form action={loginWithGoogle}>
-        <button>Sign in with Google</button>
-      </form>
-      <form action={login}>
-        <input type='text' placeholder='Username' name='username' />
-        <input type='password' placeholder='Password' name='password' />
-        <button>Login</button>
-      </form>
+      <div className={styles.container}>
+        <div className={styles.wraper}>
+          <form action={loginWithGoogle}>
+            <button className={styles.btn}>Sign in with Google</button>
+          </form>
+          <LoginForm />
+        </div>
+      </div>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { connectToDb } from './connectTodb';
 import { ObjectId } from 'mongodb';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 import { unstable_noStore as noStore } from 'next/cache';
 

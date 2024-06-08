@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import GoogleProvider from '@auth/core/providers/google';
 import CredentailsProvider from '@auth/core/providers/credentials';
 import { createUser, getUser } from './data';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export const loginWithCeredentails = async (credentals) => {
   const user = await getUser({ username: credentals.username });
